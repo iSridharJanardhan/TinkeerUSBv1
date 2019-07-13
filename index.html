@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>live</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<style>
+    .mob_resp {
+      margin: auto;
+      width: 50%;
+    }
+
+    .mob_btn {
+      width: 20%;
+    }
+    @media only screen and (max-width: 800px) {
+      .mob_resp {
+        /* force devises with a smaller width to observe this style */
+        width: 95% !important ;
+      }
+      .mob_btn {
+        width: 40%;
+      }
+      .mob_btn_row {
+        width: 60%;
+      }
+    }
+  </style>
+<body style="background-color: #293462;">
+  <div>
+    <nav class="navbar navbar-light navbar-expand-md navigation-clean" style="background-color: #f76262;" >
+      <div class="container">
+        <a class="navbar-brand" href="#" style="color: white;">
+          Tinker USB
+        </a>
+        <button
+          data-toggle="collapse"
+          class="navbar-toggler"
+          data-target="#navcol-1"
+        >
+          <span class="sr-only">
+            Toggle navigation
+          </span>
+          <span class="navbar-toggler-icon"></span>
+        </button>
+          <div class="collapse navbar-collapse" id="navcol-1">
+            <ul class="nav navbar-nav ml-auto">
+              <li class="nav-item" role="presentation">
+                <a
+                  class="nav-link active"
+                  href="index.html"
+                  style="color: white;"
+                >
+                  Scripts
+                </a>
+              </li>
+              <li class="nav-item" role="presentation">
+                <a 
+                  class="nav-link" 
+                  href="live.html" 
+                  style="color: white;"
+                  >
+                  Run Scripts
+                </a>
+              </li>
+              <li class="nav-item" role="presentation">
+                <a 
+                  class="nav-link" 
+                  href="settings.html" 
+                  style="color: white;"
+                  >
+                  Settings
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <div>
+      <div class="alert alert-success alert alert-danger" role="alert">
+        <span
+          class="center-text"
+          style="text-align: center;/*float: center;*/font-weight: 700;color: rgb(102,102,102);"
+          >Error Loading the Data. Please Try Again in sometime</span
+        >
+      </div>
+    </div>
+
+    <div>
+      <div>
+        <div>
+          <h1 class="text-center text-white">
+            Scripts Available
+          </h1>
+        </div>
+      </div>
+    </div>
+
+    <div class="mob_resp">
+      <div>
+        <div class="card">
+          <div class="card-body">
+            <p id="memory">
+              <button class="btn btn-danger" onclick="format()">
+                format
+              </button> 
+              <div class="progress">
+                <div 
+                  id="memoryGraph" 
+                  class="progress-bar progress-bar-striped" 
+                  role="progressbar" 
+                  style="width: 10%" 
+                  aria-valuenow="0" 
+                  aria-valuemin="1" 
+                  aria-valuemax="0">
+                </div>
+              </div>
+				      <span id="memorySize">0 / 3MB</span>
+					  </p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="mob_resp">
+      <div class="card" style="margin-top:2%">
+        <div class="card-body">
+          <table class="table" id="scriptlist">
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Size</th>
+              <th scope="col">Run</th>
+            </tr>
+          </table>
+          <hr/>
+          <form action="/upload" method="POST" enctype="multipart/form-data">
+            <h5>New File ?</h5>
+            <div class="input-group">
+              <div class="custom-file">
+                <input type="file" name='update' class="custom-file-input" id="inputGroupFile04">
+                <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
+              </div>
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary btn-success" type="submit" style="color:white">Upload</button>
+              </div>
+            </div>
+					</form>
+        </div>
+      </div>
+    </div>
+
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script>
+        var res;
+        var table = document.getElementById("scriptlist");
+        var memoryGraph = document.getElementById("memoryGraph");
+        var memorySize = document.getElementById("memorySize");
+        
+        function loadlist(){
+          getResponse("list.json",function(responseText){
+            res = JSON.parse(responseText);
+            
+            memoryGraph.value = res.usedBytes;
+            memoryGraph.max = res.totalBytes;
+            
+            res.usedBytes = parseInt(res.usedBytes/1000);
+            res.totalBytes = parseInt(res.totalBytes/1000);
+            
+            memorySize.innerHTML = res.usedBytes+" / "+res.totalBytes+"KB ("+(res.totalBytes-res.usedBytes)+"KB available)";
+            
+            var tableHTML = "<tr><th>Name</th><th>Size</th><th>Run</th></tr>";
+            for(var i=0;i<res.list.length;i++){
+              tableHTML += "<tr>";
+              tableHTML += "<td><a href='view.html?script="+res.list[i].n+"'>"+res.list[i].n+"</a></td>";
+              tableHTML += "<td>"+res.list[i].s+"</td>";
+              tableHTML += "<td><button class='selectBtn' onclick='run("+i+")'>run</button></td>";
+              tableHTML += "</tr>";
+            }
+            table.innerHTML = tableHTML;
+          });
+        }
+        
+        loadlist();
+        
+        function run(i){
+          getResponse("run?name="+res.list[i].n,function(responseText){
+            console.log(responseText);
+          },undefined,undefined,"POST");
+        }
+        
+        function format(){
+          getResponse("format",function(responseText){
+            loadlist();
+          });
+        }
+      </script>
+</body>
+
+</html>

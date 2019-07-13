@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>settings</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<style>
+.mob_resp{
+  margin: auto;
+  width: 50%;
+}
+
+.mob_btn{
+  width:20%
+}
+@media only screen and (max-width: 800px) {
+    .mob_resp {
+      /* force devises with a smaller width to observe this style */
+      width: 95% !important ;
+    }
+    .mob_btn{
+      width:40%;
+    }
+    .mob_btn_row{
+      width:60%;
+    }
+}
+</style>
+
+<body style="background-color: #293462;"><div>
+      <nav
+        class="navbar navbar-light navbar-expand-md navigation-clean"
+        style="background-color: #f76262;"
+      >
+        <div class="container">
+          <a class="navbar-brand" href="#" style="color: white;">
+            Tinker USB
+          </a>
+          <button
+            data-toggle="collapse"
+            class="navbar-toggler"
+            data-target="#navcol-1"
+          >
+            <span class="sr-only">
+              Toggle navigation
+            </span>
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navcol-1">
+            <ul class="nav navbar-nav ml-auto">
+              <li class="nav-item" role="presentation">
+                <a
+                  class="nav-link active"
+                  href="index.html"
+                  style="color: white;"
+                  >
+                  Scripts
+                </a>
+              </li>
+              <li class="nav-item" role="presentation">
+                <a 
+                class="nav-link" 
+                href="live.html" 
+                style="color: white;"
+                >
+                  Run Scripts
+                </a>
+              </li>
+              <li class="nav-item" role="presentation">
+                <a 
+                class="nav-link" 
+                href="settings.html" 
+                style="color: white;"
+                >
+                  Settings
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <!-- HTML content for loading errors -->
+    <div id="error">
+      <div class="alert alert-success alert alert-danger" role="alert">
+        <span
+          class="center-text"
+          style="text-align: center;/*float: center;*/font-weight: 700;color: rgb(102,102,102);"
+        >
+          Error Loading the Data. Please Try Again in sometime
+        </span>
+      </div>
+    </div>
+    <!-- end/HTML content for loading errors -->
+
+    <!-- Main Header Tag -->
+
+    <div>
+      <div>
+        <div>
+          <h1 class="text-center text-white">
+            Settings
+          </h1>
+        </div>
+      </div>
+    </div>
+
+    <!-- end/Main Header Tag -->
+
+    <!-- Wifi Settings Block Content -->
+    <form action="settings.html" method="POST">
+    <div class="mob_resp">
+      <div>
+        <div class="card">
+          <div class="card-body">
+            <div class="form-group">
+              <h2>
+                Wifi Settings
+              </h2>
+              
+              <!-- Form group of WIFI setting Block -->
+              
+              <!-- SSID Form -->
+              <div class="container">
+                <div class="row">
+                  <div class="col">
+                    <h5>SSID:</h5>
+                  </div>
+                  <div class="col">
+                    <div class="form-group">
+                        <input 
+                          type="text"
+                          value="WiFi Duck" 
+                          class="form-control" 
+                          id="ssid"
+                          name="ssid"
+                          maxlength="32"
+                          minlength="1" 
+                          aria-describedby="emailHelp" 
+                          placeholder="Enter SSID"
+                        />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- end/ SSID Form -->
+
+              <!-- Password Form -->
+              <div class="container">
+                <div class="row">
+                  <div class="col">
+                    <h5>Password:</h5>
+                  </div>
+                  <div class="col">
+                    <div class="form-group">
+                      <input 
+                        type="text"
+                        value="quackquack" 
+                        class="form-control" 
+                        id="pswd"
+                        name="pswd"
+                        maxlength="32"
+                        minlength="8" 
+                        aria-describedby="emailHelp" 
+                        placeholder="Enter email"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- end/ Password Form -->
+
+              <!-- Channel Form -->
+              <div class="container">
+                <div class="row">
+                  <div class="col">
+                    <h5>Channel:</h5>
+                  </div>
+                  <div class="col">
+                    <div class="form-group">
+                      <input 
+                        type="number"
+                        min="1" 
+                        max="14" 
+                        value="1" 
+                        id="ch" 
+                        name="ch" 
+                        class="form-control" 
+                        aria-describedby="emailHelp" 
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- end/ Channel Form -->
+  
+              <!--  Hidden Form -->
+              <div class="container">
+                <div class="row">
+                  <div class="col">
+                    <h5>Hidden:</h5>
+                  </div>
+                  <div class="col">
+                    <div class="form-group">
+                      <div class="checkbox">
+                        <input 
+                          type="checkbox" 
+                          id="hidden" 
+                          name="hidden" 
+                          value="enabled"/>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- end/Hidden Form -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Attack Setting  -->
+    <div class="mob_resp" style="margin: auto;width: 50%;">
+      <div class="card" style="margin-top:2%">
+        <div class="card-body">
+          <h2>
+            Attack Settings
+          </h2>
+          <!-- Password form -->
+          <div class="container">
+            <div class="row">
+              <div class="col">
+                <h5>Enable Script Execution on Startup:</h5>
+              </div>
+              <div class="col">
+                <div class="form-group">
+                    <div class="checkbox">
+                      <input 
+                        id="autoExec" 
+                        name="autoExec" 
+                        value="enabled"
+                        class="form-control" 
+                      />
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end/ Password Form -->
+          <div class="container">
+            <div class="row">
+              <div class="col">
+                <h5>Auto-Script Name:</h5>
+              </div>
+              <div class="col">
+                <div class="form-group">
+                  <input 
+                    type="text" 
+                    minlength="1" 
+                    maxlength="32" 
+                    value="autostart.txt" 
+                    id="autostart" 
+                    name="autostart" 
+                    class="form-control"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="mob_resp" style="margin: auto;width: 50%;">
+        <div class="card" style="margin-top:2%">
+          <div class="card-body">
+              <div class="col text-center">
+                <input type="submit" class="btn btn-success center mob_btn" value="save" />
+              </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="mob_resp" style="margin: auto;width: 50%;">
+        <div class="card" style="margin-top:2%">
+          <div class="card-body">
+              <div class="container">
+                  <div class="row">
+                    <div class="col text-center">
+                        <input type="submit" class="btn btn-primary center mob_btn_row" onclick="restart()" value="Restart" />
+                    </div>
+                    <div class="col text-center">
+                        <input type="submit" class="btn btn-danger center mob_btn_row" onclick="reset()" value="Reset" />
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </form>
+  </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script>
+			
+        function set(e,v) document.getElementById(e).value = v;
+        function setChecked(e) document.getElementById(e).setAttribute('checked','checked');
+        
+        function loadSettings(){
+          getResponse("settings.json",function(responseText){
+            var res = JSON.parse(responseText);
+            
+            set("ssid",res.ssid);
+            set("pswd",res.password);
+            set("ch",res.channel);
+            set("hidden",res.hidden);
+            set("autostart",res.autostart);
+            if(res.hidden) setChecked("hidden");
+            if(res.autoExec) setChecked("autoExec");
+          });
+        }
+        
+        loadSettings();
+        
+        function restart(){
+          getResponse("restart",function(responseText){},function(){
+            document.getElementById("error").innerHTML = "device is restarting";
+          },1000);
+          
+        }
+        
+        function reset(){
+          getResponse("reset",function(responseText){
+            loadSettings();
+          });
+        }
+        
+      </script>
+</body>
+
+</html>
