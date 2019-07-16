@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <script src="functions.js"></script>
     <title>live</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
@@ -83,15 +84,11 @@
       </nav>
     </div>
 
-    <div>
-      <div class="alert alert-success alert alert-danger" role="alert">
-        <span
-          class="center-text"
-          style="text-align: center;/*float: center;*/font-weight: 700;color: rgb(102,102,102);"
-          >Error Loading the Data. Please Try Again in sometime</span
-        >
+  
+      <div class="alert alert-success alert alert-danger" role="alert" id="error">
+        
       </div>
-    </div>
+  
 
     <div>
       <div>
@@ -112,15 +109,7 @@
                 format
               </button> 
               <div class="progress">
-                <div 
-                  id="memoryGraph" 
-                  class="progress-bar progress-bar-striped" 
-                  role="progressbar" 
-                  style="width: 10%" 
-                  aria-valuenow="0" 
-                  aria-valuemin="1" 
-                  aria-valuemax="0">
-                </div>
+                <meter id="memoryGraph" value="" max="1" min="0"></meter> 
               </div>
 				      <span id="memorySize">0 / 3MB</span>
 					  </p>
